@@ -9,7 +9,14 @@ const authMiddleware = require('./middleware/authMiddleware')
 
 const app = express()
 
+const corsOptions = {
+  origin: 'https://task4front-1gqn.onrender.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type, Authorization'
+};
+
 app.use(cors())
+app.options('*', cors(corsOptions));
 app.use(express.json())
 
 app.use('/api', authMiddleware)
